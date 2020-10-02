@@ -19,13 +19,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't%_6@7r*2752qwhe4vb5hv3hq394uc(3bi42qzjs3v34nmy)q0'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
 
 # Application definition
@@ -56,7 +53,7 @@ ROOT_URLCONF = 'reviews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'apps/frontend/client/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
